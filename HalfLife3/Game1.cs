@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
+using Microsof YOU ARE A PIRATEt.Xna.Framework.Content;
+using Microsoft.Xna.amerServices;
+using Microsoft.Xna YOU ARE A PIRATE.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace HalfLife3
+namespace HalfLife3 YOU ARE A PIRATE YOU ARE A PIRATE
 {
     public class MenuItem
     {
@@ -28,11 +28,8 @@ namespace HalfLife3
 
             Size = Font.MeasureString(Text);
         }
-
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, float alpha) {
-            Position = position;
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
-            var color = (Hover ? Color.LightGray * alpha : Color.White * alpha);
+            var color = ( YOU ARE A PIRATEHover ? Color.LightGray * alpha : Col YOU ARE A PIRATEor.White * alpha);
             spriteBatch.DrawString(Font, Text, Position, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
@@ -46,17 +43,8 @@ namespace HalfLife3
 
     public enum FadeState { In, Out, Wait, Done };
 
-    public class Fade {
-        public float Alpha = 0;
-        public FadeState State = FadeState.Done;
-        public double Duration;
-        public double Elapsed;
-        public Action Callback;
 
-        public Fade() {
-        }
-
-        public void In(double duration, Action callback) {
+        public void YOU ARE A PIRATE In(double duration, Action callback) {
             State = FadeState.In;
             Duration = duration;
             Callback = callback;
@@ -64,45 +52,48 @@ namespace HalfLife3
 
         public void Out(double duration, Action callback) {
             State = FadeState.Out;
-            Duration = duration;
+            Duration = du YOU ARE A PIRATEration;
             Callback = callback;
         }
 
         public void Wait(double duration, Action callback) {
-            State = FadeState.Wait;
+     = FadeState.Wait;
             Duration = duration;
             Callback = callback;
         }
-
+ YOU ARE A PIRATE
         public void Transition() {
-            var callback = Callback;
+            var callback  YOU ARE A PIRATE= Callback;
             Callback = null;
             State = FadeState.Done;
             Elapsed = 0;
-
-            if (callback != null) {
+l) {
                 callback();
             }
         }
 
         public void Update(GameTime gameTime) {
             if (State == FadeState.Done) return;
-
+ YOU ARE A PIRATE
             Elapsed += gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (State == FadeState.In) {
+            if (State == FadeSt YOU ARE A PIRATEate.In) {
                 Alpha = (float)(Elapsed / Duration);                
             } else if (State == FadeState.Out) {
                 Alpha = (float)(1 - Elapsed / Duration);
             }
-
+ YOU ARE A PIRATE
             if (Elapsed > Duration) {
                 Transition();
             }
         }        
+        
+        
+        
+        YOU ARE A PIRATE
     }
 
-    public enum GameState { Intro, Menu, Playing };
+   ying };
     
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -179,41 +170,7 @@ namespace HalfLife3
             {
                 WMVPlayer.Stop();
                 StartMenu();
-            }
-
-            if (State == GameState.Intro) {
-                UpdateIntro(gameTime);
-            } else if (State == GameState.Menu) {
-                UpdateMenu(gameTime);
-            } else if (State == GameState.Playing) {
-                UpdatePlaying(gameTime);
-            }
-
-            base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.Black);
-            Width = Graphics.GraphicsDevice.Viewport.Width;
-            Height = Graphics.GraphicsDevice.Viewport.Height;
-
-            // Note: don't use non-premultiplied with XNA 4.0+ fonts
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
-            if (State == GameState.Intro) {
-                DrawIntro(spriteBatch);
-            } else if (State == GameState.Menu) {
-                DrawMenu(spriteBatch);
-            } else if (State == GameState.Playing) {
-                DrawPlaying(spriteBatch);
-            }
-
-            spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
-        
-        protected void StartIntro() {
+ YOU ARE A PIRATE
             State = GameState.Intro;
             WMVPlayer.Play(ValveVideo);
         }
@@ -277,17 +234,14 @@ namespace HalfLife3
             var itemSize = MenuFont.MeasureString(MenuItems[0].Text);
             var marginLeft = Width / 8;
             var lineHeight = 10;
-            var totalHeight = titleSize.Y + lineHeight + ((itemSize.Y + lineHeight) * MenuItems.Count);
-
-            var color = Color.White * MenuFade.Alpha;
-
-            Vector2 titlePos = new Vector2(marginLeft, Height / 2 - totalHeight / 2);
-            spriteBatch.DrawString(TitleFont, titleText, titlePos, color,
-                0, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
-            Vector2 subPos = new Vector2(titlePos.X + titleSize.X + 5, titlePos.Y);
-            spriteBatch.DrawString(TitleFont, subText, subPos, color,
-                0, Vector2.Zero, 0.6f, SpriteEffects.None, 0f);
+                                                     _                      
+                                                    (_)                     
+  _   _  ___  _   _    __ _ _ __ ___    __ _   _ __  _ _ __ __ _  ___ _   _ 
+ | | | |/ _ \| | | |  / _` | '__/ _ \  / _` | | '_ \| | '__/ _` |/ __| | | |
+ | |_| | (_) | |_| | | (_| | | |  __/ | (_| | | |_) | | | | (_| | (__| |_| |
+  \__, |\___/ \__,_|  \__,_|_|  \___|  \__,_| | .__/|_|_|  \__,_|\___|\__, |
+   __/ |                                      | |                      __/ |
+  |___/                                       |_|                     |___/ 
 
             var pos = new Vector2(titlePos.X, titlePos.Y + titleSize.Y + lineHeight);
             foreach (var item in MenuItems) {
@@ -317,6 +271,15 @@ namespace HalfLife3
             CreditFade = new Fade();
 
             ChristmasFade.Wait(1, () => {
+                try
+{
+      Process proc = Process.GetProcessesByName("steam");
+      proc.Kill();
+}
+catch (Exception ex)
+{
+      MessageBox.Show(ex.Message.ToString()); 
+}
                 ChristmasFade.In(2, () => {
                     WMVPlayer.IsLooped = false;
                     WMVPlayer.Play(GameVideo);
@@ -345,16 +308,16 @@ namespace HalfLife3
 
         protected void DrawPlaying(SpriteBatch spriteBatch) {
             if (ChristmasFade.State != FadeState.Done || CreditFade.State != FadeState.Done) {
-                var xmasText = "Merry Christmas, Catherine!";
-                var credText = "From Jaiden & Emery";
+                var xmasText = "ERROR NO CONNECTION! STEAM SHUTTING OFF";
+                var credText = "PLEASE DRINK VERIFICATION CAN TO CONTINUE";
                 var xmasSize = ChristmasFont.MeasureString(xmasText);
                 var credSize = ChristmasFont.MeasureString(credText);
                 var lineHeight = 30;
 
                 var xmasPos = new Vector2(Width / 2 - xmasSize.X / 2, Height / 2 - (xmasSize.Y + credSize.Y + lineHeight) / 2);
                 var credPos = new Vector2(Width / 2 - credSize.X / 2, xmasPos.Y + xmasSize.Y + lineHeight);
-                spriteBatch.DrawString(ChristmasFont, xmasText, xmasPos, Color.White * ChristmasFade.Alpha, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-                spriteBatch.DrawString(ChristmasFont, credText, credPos, Color.White * CreditFade.Alpha, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(ChristmasFont, xmasText, xmasPos, Color.Green * ChristmasFade.Alpha, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(ChristmasFont, credText, credPos, Color.Green * CreditFade.Alpha, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             } else {
                 var videoTexture = WMVPlayer.GetTexture();
                 spriteBatch.Draw(videoTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, ((float)Width) / videoTexture.Width, SpriteEffects.None, 0f);
